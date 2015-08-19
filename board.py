@@ -26,7 +26,7 @@ class Board(object):
 
     def is_end_game(self, players):
         for player in players:
-            players_squares = [s.index for s in self.squares if s.player is player]
+            players_squares = set([s.index for s in self.squares if s.player is player])
             if any([solution <= players_squares for solution in solutions]):
                 print "Congradulations Player %i! You won!\n" % player.index
                 return True
@@ -34,9 +34,3 @@ class Board(object):
             print "TIE GAME!\n"
             return True
         return False
-
-board = Board()
-board.display()
-player = Player(1,'X')
-board.claim(player, player.get_valid_move(board))
-board.display()
